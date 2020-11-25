@@ -11,5 +11,5 @@ class ProfileAdmin(admin.ModelAdmin):
     list_display = ['pk', 'user','prof_register','picture']
     list_display_links = ('pk', 'prof_register',)
     list_editable = ('picture',)
-    search_fields = ('user__fist_name', 'user__last_name', )
+    search_fields = ('user__first_name', 'user__last_name', )
 
