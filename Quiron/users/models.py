@@ -1,11 +1,11 @@
-""" Djanog models """
+""" Import Djanog models """
 from django.db import models
 
 """ Import the User model from django to extend """
 
 from django.contrib.auth.models import User
 
-class Profile(models.Model):
+class Profile(models.Model):user
     """ Profile models
 
     Proxy model extends the base data with other information.

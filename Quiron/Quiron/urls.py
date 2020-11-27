@@ -3,10 +3,11 @@ from django.contrib import admin
 from django.urls import path
 
 """ Quiron apps views """
-import users.views
+from users import views as users_views
 
 """ Url patterns """
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('home/', users.views.user_home, name ='home'),
+    path('home/', users_views.home, name ='home'),
+    path('login/', users_views.login_view, name ='login'),
 ]
