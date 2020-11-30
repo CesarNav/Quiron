@@ -1,7 +1,11 @@
 """ Django modules """
 from django.shortcuts import render, redirect
+# Login and authenticate module
 from django.contrib.auth import authenticate, login
+# Login needed
 from django.contrib.auth.decorators import login_required
+# Logout module
+from django.contrib.auth import logout
 
 """ Home view """
 @login_required(login_url='/login/')
@@ -26,3 +30,9 @@ def login_view(request):
             # Return a error message
             return render(request, 'login.html', {'error':'Usuario o contraseña invalida'})
     return render(request,'login.html')
+
+""" Login view """
+@login_required
+def logout_view(request):
+    logout(request)
+    return redirect('login')

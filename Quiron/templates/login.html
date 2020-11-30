@@ -31,10 +31,20 @@
 
           <!-- Form -->
           <div class="row justify-content-center">
-            <form method="POST" action="{% url 'login' %}">  {% csrf_token %} 
+            <form method="POST" action="{% url 'login' %}">
+              {% csrf_token %}  
+              <!-- Error message -->
+              <div class="row justify-content-center">
+                {% if error %}
+                  <p class="alert alert-danger">{{ error }}</p>
+                {% endif %}
+              </div>
+
+              
+              <!-- /Error message -->
               <div class="form-group">
                 <label for="exampleInputEmail1">Usuario</label>
-                <input type="text" class="form-control" id="exampleInputText" aria-describedby="emailHelp" name="username">
+                <input type="text" class="form-control" id="exampleInputText" name="username">
                 <small id="usernameHelp" class="form-text text-muted">Ingresa el nombre de usuario con el que te registraste</small>
               </div>
               <div class="form-group">
@@ -45,13 +55,6 @@
                 <input type="checkbox" class="form-check-input" id="exampleCheck1">
                 <label class="form-check-label" for="exampleCheck1">Recordarme</label>
               </div> -->
-              <!-- Error message -->
-              <div class="row">
-                {% if error %}
-                  <p style="color: red;">{{ error }}</p>
-                {% endif %}
-              <!-- /Error message -->
-              </div>
               <button type="submit" class="btn btn-primary">Ingresar</button>
             </form>
           </div>
