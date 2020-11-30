@@ -11,6 +11,9 @@ from django.contrib.auth.models import User
 # Import profile user model
 from users.models import Profile
 
+""" Exceptions """
+from django.db.utils import IntegrityError
+
 """ Home view """
 @login_required(login_url='/login/')
 def home(request):
@@ -51,10 +54,12 @@ def signin_view(request):
         prof_register = request.POST['prof_register']
         
         # Create user with the fields
-        user = User.objects.create_user(username=username, password=password)
-        # first_name=first_name, 
-        # last_name=last_name,
-        # email=email,)
+        # Launch an exception when the username alredy exist 
+        try:
+            user = User.objects.create_user(username=username, password=password)
+        except IntegrityError:
+            return render(request,'signin.html', {'errorsignin': 'Nombre de usuario en uso'})
+
         user.first_name = request.POST['first_name']
         user.last_name = request.POST['last_name']
         user.email = request.POST['email']
