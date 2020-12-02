@@ -14,14 +14,34 @@ from users.models import Profile
 """ Exceptions """
 from django.db.utils import IntegrityError
 
+""" Views """
+
 """ Home view """
 @login_required(login_url='/login/')
 def home(request):
-    return render(request,'home.html')
+    return render(request,'baseh.html')
 
-""" Profole view """
+""" Profile view """
 def user_profile(request):
-    return render(request, '')
+    return render(request, 'profile.html')
+
+def prof_update(request):
+
+    if request.method == 'POST':
+        first_name = request.POST['first_name']
+        last_name = request.POST['last_name']
+        email = request.POST['email']
+        prof_register = request.POST['prof_register']
+
+        user = User()
+        user.first_name = request.POST['first_name']
+        user.last_name = request.POST['last_name']
+        user.email = request.POST['email']
+        user.prof_register = request.POST['prof_register']
+        user.save()
+
+        return redirect('profile')
+    return render(request,'prof_update.html')
 
 """ Login view """
 def login_view(request):
@@ -53,7 +73,7 @@ def signin_view(request):
         email = request.POST['email']
         prof_register = request.POST['prof_register']
         
-        # Create user with the fields
+        # Create user with the fields above
         # Launch an exception when the username alredy exist 
         try:
             user = User.objects.create_user(username=username, password=password)

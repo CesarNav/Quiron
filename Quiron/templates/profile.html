@@ -1,0 +1,33 @@
+{% extends "baseh.html" %}
+{% block headcontent %}
+<title>{{ request.user.first_name }} {{ request.user.last_name }} | Perfil</title>
+{% endblock  %}
+{% block profile %}
+<div class="container mt-5 mb-5">
+    <div class="card" style="width: 18rem;">
+        <img src="..." class="card-img-top" alt="...">
+        <div class="row justify-content-center"> 
+            <h1>Perfil </h1> 
+        </div>
+        <div class="card-body">
+            <div class="row justify-content-center">
+                <ul class="list-group list-group-flush">
+                    <label for="Username"> Username</label>
+                    <li class="list-group-item">{{ request.user.username}}</li>
+                    <label for="first_name"> Nombre </label>
+                    <li class="list-group-item">{{ request.user.first_name }}</li>
+                    <label for="last_name"> Apellido</label>
+                    <li class="list-group-item">{{ request.user.last_name }}</li>
+                    <label for="email"> Correo Electronico</label>
+                    <li class="list-group-item">{{ request.user.email }}</li>
+                    <label for="prof_register"> Matricual profesional</label>
+                    <li class="list-group-item">{{ request.user.profile.prof_register }}</li>
+                </ul>
+            </div>
+        </div>
+    <div class="row justify-content-center">
+        <a href="{% url "prof_update" %}">Actualizar</a>
+
+    </div>
+</div>
+{% endblock %}
