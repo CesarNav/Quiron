@@ -1,7 +1,9 @@
 {% extends "base.html" %}
+
 {% block headcontent %}
 <title>Ingresar</title>
 {% endblock  %}
+
 {% block login %}
 <form method="POST" action="{% url 'login' %}">
     {% csrf_token %}  

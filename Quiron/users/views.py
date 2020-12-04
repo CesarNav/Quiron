@@ -8,24 +8,34 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
 # User cretion module
 from django.contrib.auth.models import User
+
+""" Local Modules """
 # Import profile user model
 from users.models import Profile
+from patients.models import Patient
+
 
 """ Exceptions """
 from django.db.utils import IntegrityError
 
+
 """ Views """
 
-""" Home view """
+# Home view
 @login_required(login_url='/login/')
 def home(request):
-    return render(request,'baseh.html')
+    patients = Patient.objects.all()
+    context = {
+        'patients':patients
+    }
+    return render(request,'home.html', context)
 
-""" Profile view """
+# Profile view 
 def user_profile(request):
     return render(request, 'profile.html')
 
-def prof_update(request):
+@login_required
+def prof_update(request, ):
 
     if request.method == 'POST':
         first_name = request.POST['first_name']
@@ -91,7 +101,7 @@ def signin_view(request):
         profile.prof_register = request.POST['prof_register']
         profile.save()
 
-        # Redirect to login view
+        # Redirect to home view
         return redirect('home')
     return render(request,'signin.html')
 

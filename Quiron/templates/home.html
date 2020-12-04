@@ -1,0 +1,75 @@
+{% extends "baseh.html" %}
+
+<!-- Title -->
+{% block headcontent %}
+<title>{{ request.user.first_name }} {{ request.user.last_name }} | Home </title>
+{% endblock  %}
+<!-- /Title -->
+
+<!-- Home Cards -->
+{% block home %}
+<div class="card w-100">
+    <div class="row">
+      <div class="col-2">
+        <img src="..." class="card-img" alt="...">
+      </div>
+        <div class="col-3">
+            <div class="card-body">
+                <h5 class="card-title">Bienvenido {{ request.user.first_name }} {{ request.user.last_name }}  </h5>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card-body">
+                <p class="card-text"> {{ user.profile.prof_register}} </p>
+                <p class="card-text"><small class="text-muted"> Puedes empezar a gestionar tus pacientes </small></p>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row mt-2">
+    <div class="col-3">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Pacientes</h5>
+          <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+          </form>
+          <ul class="list-group list-group-flush">
+            
+            {% for patient in patients %}
+              <li class="list-group-item">{{ patient.name}}</li>
+            {% endfor %}
+          </ul>
+          <a href="" class="btn btn-primary" data-toggle="modal" data-target="#modal_patient_creation">Nuevo paciente</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-3">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Citas</h5>
+          <p class="card-text">Nueva Cita</p>
+          <a href="#"  class="btn btn-primary">Crear Nueva Cita</a>
+        </div>
+      </div>
+    </div>
+    <div class="col">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Calendario</h5>
+            <p class="card-text">Tu Calendario</p>
+            <a href="#" class="btn btn-primary">Modificar</a>
+          </div>
+        </div>
+    </div>
+</div>
+{% endblock%}
+<!-- /Home Cards -->
+
+<!-- Modal create patient -->
+{% block patient_creation %}
+
+{% endblock%}
+<!-- /Modal create patient -->
+

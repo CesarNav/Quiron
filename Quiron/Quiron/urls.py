@@ -4,6 +4,8 @@ from django.urls import path
 
 """ Quiron apps views """
 from users import views as users_views
+from patients import views as patients_views
+
 
 """ Url patterns """
 urlpatterns = [
@@ -14,4 +16,11 @@ urlpatterns = [
     path('signin/', users_views.signin_view, name ='signin'),
     path('profile', users_views.user_profile, name ='profile'),
     path('profile/update', users_views.prof_update, name ='prof_update'),
+    path('patient/creation', patients_views.patient_creation, name ='patient_creation'),
+    path('patient', patients_views.patient_profile, name ='patient_creation'),
+    
 ]
+
+
+
+
