@@ -24,7 +24,7 @@ from django.db.utils import IntegrityError
 # Home view
 @login_required(login_url='/login/')
 def home(request):
-    patients = Patient.objects.all()
+    patients = Patient.objects.filter(user=request.user)
     context = {
         'patients':patients
     }
@@ -32,10 +32,11 @@ def home(request):
 
 # Profile view 
 def user_profile(request):
+    
     return render(request, 'profile.html')
 
 @login_required
-def prof_update(request, ):
+def prof_update(request):
 
     if request.method == 'POST':
         first_name = request.POST['first_name']

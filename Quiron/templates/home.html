@@ -38,10 +38,10 @@
           <ul class="list-group list-group-flush">
             
             {% for patient in patients %}
-              <li class="list-group-item">{{ patient.name}}</li>
+              <a href="{% url 'patient_profile' patient.id_number %}"><li class="list-group-item">{{ patient.name}} {{ patient.id_number}}</li></a>
             {% endfor %}
           </ul>
-          <a href="" class="btn btn-primary" data-toggle="modal" data-target="#modal_patient_creation">Nuevo paciente</a>
+          <a href="{% url 'patient_creation' %}" class="btn btn-primary">Nuevo paciente</a>
         </div>
       </div>
     </div>

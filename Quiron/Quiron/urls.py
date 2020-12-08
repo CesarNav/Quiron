@@ -16,9 +16,9 @@ urlpatterns = [
     path('signin/', users_views.signin_view, name ='signin'),
     path('profile', users_views.user_profile, name ='profile'),
     path('profile/update', users_views.prof_update, name ='prof_update'),
-    path('patient/creation', patients_views.patient_creation, name ='patient_creation'),
-    path('patient', patients_views.patient_profile, name ='patient_creation'),
-    
+    path('patient_creation', patients_views.patient_creation, name ='patient_creation'),
+    path('patient/<int:id_number>/', patients_views.patient_profile, name ='patient_profile'),
+    path('patient_update/<int:id_number>/', patients_views.patient_update, name ='patient_update'),
 ]
 
 
