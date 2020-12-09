@@ -1,13 +1,11 @@
 from django.db import models
 from django.contrib.auth.models import User
 
+""" Patients models """
 class Patient(models.Model):
-    """ Patients models """
 
-    """ Therapist Profile """
     # Link the patient to therapist profile
     user = models.ForeignKey(User, on_delete=models.CASCADE,)
-    
 
     # Choices list
     GENDER_CHOICES=[('M', 'Masculino'),
@@ -43,4 +41,3 @@ class Patient(models.Model):
     """ Return the patient name """
     def __str__(self):
         return self.name
-

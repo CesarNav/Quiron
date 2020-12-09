@@ -23,3 +23,4 @@ class Patient_Form(forms.ModelForm):
         'email',
         'user',)
         # widgets = {'name':forms.Textarea}
+

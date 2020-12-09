@@ -1,0 +1,22 @@
+{% extends "./baseh.html"%}
+
+<!-- Title -->
+{% block headcontent %}
+<title>Nuevo Reporte</title>
+{% endblock  %}
+<!-- /Title -->
+
+{% block patient_creation %}
+<!-- New patient form -->
+<div>
+<form method="POST">
+  {% csrf_token %}
+  {{ form }}
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+    <button type="submit" class="btn btn-primary">Guardar</button>
+  </div>
+</form>
+<!-- New patient form -->
+{% endblock%}
+<!-- /Modal Patient Creation -->

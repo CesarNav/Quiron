@@ -1,10 +1,12 @@
 {% extends "baseh.html" %}
+
 {% block headcontent %}
 <title>{{ request.user.first_name }} {{ request.user.last_name }} | Perfil</title>
 {% endblock  %}
+
 {% block profile %}
     <form method="POST" action="{% url 'prof_update' %}">
-        {% csrf_token %}  
+        {% csrf_token %} 
         <!-- Error message -->
         <div class="row justify-content-center">
             {% if errorsignin %}

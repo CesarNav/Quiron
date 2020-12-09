@@ -1,19 +1,27 @@
-""" Modules """
+""" Django Modules """
 # Djanog modules
 from django.shortcuts import render, redirect
+# Login needed decorator
+from django.contrib.auth.decorators import login_required
 
-# Local modules
+""" Local modules """
 from patients.models import Patient
+from reports.models import Report
 from patients.forms import Patient_Form
 
-# @login_required(login_url='/login/')
-
+@login_required(login_url='/login/')
 def patient_profile(request,id_number):
     #Get the patient by its id_number
     patient = Patient.objects.get(id_number=id_number)
+    reports = Report.objects.filter(patient_id=id_number) 
+    context = {
+        'patient':patient,
+        'reports':reports,
+    }
     # Return the patient profile as a dictionary
-    return render(request,'patient.html',{'patient':patient})
+    return render(request,'patient.html', context)
 
+@login_required(login_url='/login/')
 def patient_creation(request):
     if request.method == 'GET':
         form = Patient_Form()
@@ -31,6 +39,7 @@ def patient_creation(request):
             return redirect('home')
     return render(request,'patient_creation.html', context)
 
+@login_required(login_url='/login/')
 def patient_update(request,id_number):
     patient = Patient.objects.get(id_number=id_number)
     if request.method == 'GET':
@@ -49,12 +58,14 @@ def patient_update(request,id_number):
             return redirect('home')
     return render(request,'patient_creation.html',context)
 
+@login_required(login_url='/login/')
 def patient_deactivate(request,id_number):
     patient = Patient.objects.get(id_number=id_number)
     patient.status = "D"
     patient.save()
     return redirect('home')
 
+@login_required(login_url='/login/')
 def patient_delete(request,id_number):
     patient = Patient.objects.get(id_number=id_number)
     patient.delete()

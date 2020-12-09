@@ -2,7 +2,7 @@
 
 <!-- Title -->
 {% block headcontent %}
-<title>{{ patient.name }} | {{ patient.id_number }} </title>
+<title>{{ patient.name }} {{ patient.last_name }} | {{ patient.id_number }} </title>
 {% endblock  %}
 <!-- /Title -->
 {% block patient_profile %}
@@ -21,7 +21,10 @@
             <div class="card-body">
               <a href="{% url 'patient_update' patient.id_number %}" class="btn btn-primary">Editar</a>
               <a href="{% url 'patient_deactivate' patient.id_number %}" class="btn btn-primary">Desactivar</a>
-              <a href="{% url 'patient_delete' patient.id_number %}" class="btn btn-primary">Eliminar</a>
+              <a href="{% url 'patient_delete' patient.id_number %}" class="btn btn-primary">Eliminar def</a>
+              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                Eliminar
+              </button>
             </div>
             
         </div>
@@ -31,7 +34,9 @@
     <div class="col-8">
       <div class="card">
         <div class="card-body">
+          <!-- Seccion title -->
           <h5 class="card-title">Historia clinica</h5>
+          <!-- /Seccion title -->
 
           <!-- Search bar -->
           <form class="form-inline my-2 my-lg-0">
@@ -39,16 +44,46 @@
             <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
           </form>
           <!-- /Search bar -->
+          <a href="{% url 'report_creation' %}"  class="btn btn-primary">Crear nuevo reporte</a>
+          {% for report in reports %}
+          <div class="col">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">{{ report.created }}</h5>
+                <p class="card-text">{{ report.used_techniques }}</p>
+                <p class="card-text">{{ report.conclusions }}</p>
+                <a href="{% url 'report_update' report.id %}" class="btn btn-primary">Editar</a>
+                <a href="{% url 'report_delete' report.id %}" class="btn btn-primary">Eliminar</a>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+          
          
         </div>
       </div>
     </div>
-    <div class="col">
-      <div class="card">
-        <div class="card-body">
-          <h5 class="card-title">Formulacion del Caso</h5>
-          <p class="card-text">Nuevo Reporte</p>
-          <a href="#"  class="btn btn-primary">Crear Nueva Cita</a>
+
+    
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <p>Está a punto de eliminar un paciente y la informacion del mismo</p>
+            <p>Una vez completada esta acción, no podra acceder a dicho perfil ni a su informacion asociada.</p>
+            <p>¿Desea continuar con este proceso?</p>
+            
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+            <a href="{% url 'patient_delete' patient.id_number %}" class="btn btn-primary">Eliminar</a>
+          </div>
         </div>
       </div>
     </div>

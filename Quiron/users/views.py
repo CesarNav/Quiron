@@ -21,7 +21,7 @@ from django.db.utils import IntegrityError
 
 """ Views """
 
-# Home view
+# List of active patients
 @login_required(login_url='/login/')
 def home(request):
     patients = Patient.objects.filter(user=request.user,status='A')
@@ -37,7 +37,6 @@ def user_profile(request):
 
 @login_required
 def prof_update(request):
-
     if request.method == 'POST':
         first_name = request.POST['first_name']
         last_name = request.POST['last_name']

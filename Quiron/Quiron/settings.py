@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     #Local apps
     'users',
     'patients',
+    'reports',
 ]
 
 MIDDLEWARE = [
@@ -60,7 +61,7 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
-            BASE_DIR / 'templates','templates/users','templates/patients'
+            BASE_DIR / 'templates','templates/users','templates/patients','templates/reports'
         ],
         'APP_DIRS': True,
         'OPTIONS': {
