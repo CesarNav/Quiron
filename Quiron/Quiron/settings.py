@@ -132,3 +132,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 LOGIn_URL = 'users/login/'
+
+# Configure Django App for Heroku
+import django_heroku
+django_heroku.settings(locals())
