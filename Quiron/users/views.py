@@ -24,7 +24,7 @@ from django.db.utils import IntegrityError
 # Home view
 @login_required(login_url='/login/')
 def home(request):
-    patients = Patient.objects.filter(user=request.user)
+    patients = Patient.objects.filter(user=request.user,status='A')
     context = {
         'patients':patients
     }

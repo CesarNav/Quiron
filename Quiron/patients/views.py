@@ -21,6 +21,7 @@ def patient_creation(request):
             'form':form
         }
     else:
+        # POST
         form = Patient_Form(request.POST)
         context = {
             'form':form
@@ -34,13 +35,12 @@ def patient_update(request,id_number):
     patient = Patient.objects.get(id_number=id_number)
     if request.method == 'GET':
         form = Patient_Form(instance=patient)
-        print(form)
         context = {
             'form':form
         }
     else:
+        # POST update instance
         form = Patient_Form(request.POST, instance=patient)
-        print(form)
         context = {
             'form':form
         }
@@ -48,3 +48,15 @@ def patient_update(request,id_number):
             form.save()
             return redirect('home')
     return render(request,'patient_creation.html',context)
+
+def patient_deactivate(request,id_number):
+    patient = Patient.objects.get(id_number=id_number)
+    patient.status = "D"
+    patient.save()
+    return redirect('home')
+
+def patient_delete(request,id_number):
+    patient = Patient.objects.get(id_number=id_number)
+    patient.delete()
+  
+    return redirect('home')

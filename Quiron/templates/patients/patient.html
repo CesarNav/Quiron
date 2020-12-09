@@ -10,16 +10,20 @@
     <div class="row">
         <div class="col">
             <div class="card-body">
-              <h1 class="card-text" > {{ patient.name}} </h1>
-              <span class="card-text"> Tipo de documento {{ patient.id_type}} </span>
+              <h1 class="card-text" > {{ patient.name}} {{ patient.last_name}} </h1>
+              <span class="card-text"> Tipo de documento </span>
               <span class="card-text"> Numero de documento {{ patient.id_number}} </span>
               <span class="card-text"> Edad {{ patient.age}} </span>
               <span class="card-text"> Fecha de Nacimiento {{ patient.date_birth}}  </span>
               <span class="card-text"> Telefono {{ patient.telephone}} </span>
               <span class="card-text"> Email {{ patient.email}} </span>
-              <a href="{% url 'patient_update' patient.id_number %}" class="btn btn-primary">Editar</a>
-              <a href="#" class="btn btn-primary">Eliminar</a>
             </div>
+            <div class="card-body">
+              <a href="{% url 'patient_update' patient.id_number %}" class="btn btn-primary">Editar</a>
+              <a href="{% url 'patient_deactivate' patient.id_number %}" class="btn btn-primary">Desactivar</a>
+              <a href="{% url 'patient_delete' patient.id_number %}" class="btn btn-primary">Eliminar</a>
+            </div>
+            
         </div>
     </div>
 </div>
@@ -28,16 +32,14 @@
       <div class="card">
         <div class="card-body">
           <h5 class="card-title">Historia clinica</h5>
+
           <!-- Search bar -->
           <form class="form-inline my-2 my-lg-0">
             <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
             <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
           </form>
           <!-- /Search bar -->
-          
-
-
-          <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#modal_patient_creation">Nuevo paciente</a>
+         
         </div>
       </div>
     </div>
@@ -52,4 +54,6 @@
     </div>
 </div>
 {% endblock%}
+
+
 

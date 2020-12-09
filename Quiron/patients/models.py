@@ -6,18 +6,23 @@ class Patient(models.Model):
 
     """ Therapist Profile """
     # Link the patient to therapist profile
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    # Patients Profile
+    user = models.ForeignKey(User, on_delete=models.CASCADE,)
+    
 
+    # Choices list
     GENDER_CHOICES=[('M', 'Masculino'),
      ('F', 'Femenino'), ('O', 'Otro')]
     ID_CHOICES=[('CC', 'Cedula Ciudadania'),
-     ('CE', 'Cedula Extranjeria'), ('PE', 'Pasaporte')]
+     ('CE', 'Cedula Extranjeria'), ('PE', 'Pasaporte'),]
     CIVIL_STATE_CHOICES=[('Soltero/a','Soltero/a'),
      ('Casado/a','Casado/a'), ('Union libre','Union libre'), ('Divorciado/a','Divorciado/a'),('Viudo/a','Viudo/a'),]
     SCHOOLARCHIP_CHOICES=[('Sin escolaridad','Sin escolaridad'),
      ('Primaria','Primaria'), ('Secundaria','Secundaria'), ('Pregrado','Pregrado'),('Postgrado','Postgrado'),]
+    STATUS_CHOICES=[('A', 'Activate'),('D', 'Deactivate'),]
+
+    # Patients Profile fields
     name = models.CharField(max_length=60, blank=False, default=None)
+    last_name = models.CharField(max_length=60, blank=False, default=None)
     id_type = models.CharField(max_length=2, choices=ID_CHOICES, default=None)
     id_number = models.IntegerField(primary_key=True, unique=True, blank=False)
     date_birth = models.DateField(editable=True, default=None)
@@ -30,9 +35,11 @@ class Patient(models.Model):
     adress = models.CharField(max_length=50,blank=True, null=True)
     email = models.EmailField(max_length=254, default=None)
 
+    status = models.CharField(max_length=1, choices=STATUS_CHOICES, default='A')
+
     created = models.DateTimeField(auto_now_add=True)
     modified = models.DateTimeField(auto_now=True)
-
+    
     """ Return the patient name """
     def __str__(self):
         return self.name

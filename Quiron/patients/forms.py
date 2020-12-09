@@ -8,4 +8,18 @@ from patients.models import Patient
 class Patient_Form(forms.ModelForm):
     class Meta:
         model = Patient
-        fields = '__all__'
+        fields = ('name',
+        'last_name',
+        'id_type',
+        'id_number',
+        'date_birth',
+        'age',
+        'gender', 
+        'civil_state', 
+        'ocupation', 
+        'schoolarchip', 
+        'telephone', 
+        'adress', 
+        'email',
+        'user',)
+        # widgets = {'name':forms.Textarea}

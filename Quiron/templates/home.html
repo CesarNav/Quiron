@@ -31,14 +31,10 @@
       <div class="card">
         <div class="card-body">
           <h5 class="card-title">Pacientes</h5>
-          <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-          </form>
           <ul class="list-group list-group-flush">
             
             {% for patient in patients %}
-              <a href="{% url 'patient_profile' patient.id_number %}"><li class="list-group-item">{{ patient.name}} {{ patient.id_number}}</li></a>
+              <a href="{% url 'patient_profile' patient.id_number %}"><li class="list-group-item">{{ patient.name}} {{ patient.last_name}} {{ patient.id_number}}</li></a>
             {% endfor %}
           </ul>
           <a href="{% url 'patient_creation' %}" class="btn btn-primary">Nuevo paciente</a>
