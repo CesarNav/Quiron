@@ -1,11 +1,11 @@
-#header {
+.navbar-brand {
     background-color: #041B74;
 
 }
-#sidebarMenu
-{
+#sidebarMenu{
     background-color: #041B74;
 }
 #footer {
-    background-color: #05ADC8;
+    background-color: red;
+    color: #FFFFFF;
 }

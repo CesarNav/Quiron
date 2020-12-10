@@ -1,8 +1,25 @@
-#loginbackgound {
+#loginbackground {
     background: linear-gradient(#041B74, #05ADC8);
     max-height: 100%;
+    color: #ffffff;
+}
+.card {
+    border: solid 2px #05ADC8;
+    color: #041B74;
 }
 
+.card li{
+    border: solid 2px #041B74;
+    color: #041B74;
+}
+.card li a{
+    color: #041B74;
+    text-decoration: none;
+}
+.label {
+    color: #05ADC8;
+
+}
 .form-control {
     border: 2px solid #041B74;
 }
@@ -16,6 +33,11 @@
     border-color: #041B74;
 }
 
+.btn-outline-secondary {
+    border-color: #05ADC8;
+    color: #05ADC8;
+}
+
 #quironlogo {
     max-width: 30%;
     height: auto;
@@ -24,4 +46,26 @@
 
 #signinmessage{
     color: #05ADC8 ;
+}
+
+#loginbackground li {
+    background-color: transparent;
+    border: 1px solid #ffffff;
+    color: #fff;
+}
+#loginbackground a {
+    color: #fff;
+    text-decoration: none;
+    background-color: transparent;
+}
+#footer {
+    background-color: #05ADC8;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    
+}
+
+#footer a {
+    color: #ffffff;
 }
