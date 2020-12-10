@@ -27,6 +27,7 @@ urlpatterns = [
     path('report_creation/', reports_views.report_creation, name ='report_creation'),
     path('report_update/<int:id>/', reports_views.report_update, name ='report_update'),
     path('report_delete/<int:id>/', reports_views.report_delete, name ='report_delete'),
+    path('report_pdf/<int:id_number>', reports_views.report_pdf, name ='report_pdf'),
 ]
 
 

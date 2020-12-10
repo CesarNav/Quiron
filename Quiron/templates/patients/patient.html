@@ -21,7 +21,7 @@
             <div class="card-body">
               <a href="{% url 'patient_update' patient.id_number %}" class="btn btn-primary">Editar</a>
               <a href="{% url 'patient_deactivate' patient.id_number %}" class="btn btn-primary">Desactivar</a>
-              <a href="{% url 'patient_delete' patient.id_number %}" class="btn btn-primary">Eliminar def</a>
+              <a href="{% url 'report_pdf' patient.id_number %}" class="btn btn-primary">Imprimir reporte</a>
               <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
                 Eliminar
               </button>
@@ -75,14 +75,14 @@
             </button>
           </div>
           <div class="modal-body">
-            <p>Está a punto de eliminar un paciente y la informacion del mismo</p>
+            <p>Está a punto de eliminar un paciente y la informacion asociada al mismo.</p>
             <p>Una vez completada esta acción, no podra acceder a dicho perfil ni a su informacion asociada.</p>
             <p>¿Desea continuar con este proceso?</p>
             
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-            <a href="{% url 'patient_delete' patient.id_number %}" class="btn btn-primary">Eliminar</a>
+            <a href="{% url 'patient_delete' patient.id_number %}" class="btn btn-primary">Eliminar def</a>
           </div>
         </div>
       </div>

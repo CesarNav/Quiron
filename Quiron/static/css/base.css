@@ -1,0 +1,27 @@
+#loginbackgound {
+    background: linear-gradient(#041B74, #05ADC8);
+    max-height: 100%;
+}
+
+.form-control {
+    border: 2px solid #041B74;
+}
+
+.form-group {
+    color: #041B74;
+}
+
+.btn-primary {
+    background-color: #041B74;
+    border-color: #041B74;
+}
+
+#quironlogo {
+    max-width: 30%;
+    height: auto;
+    margin: 50px;
+}
+
+#signinmessage{
+    color: #05ADC8 ;
+}
