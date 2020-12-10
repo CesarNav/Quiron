@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'users',
     'patients',
     'reports',
+    'widget_tweaks',
 ]
 
 MIDDLEWARE = [

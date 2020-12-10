@@ -1,5 +1,5 @@
 {% extends "./baseh.html"%}
-
+{% load widget_tweaks%}
 <!-- Title -->
 {% block headcontent %}
 <title>Nuevo Paciente</title>
@@ -8,15 +8,22 @@
 
 {% block patient_creation %}
 <!-- New patient form -->
-<div>
-<form method="POST">
-  {% csrf_token %}
-  {{ form }}
-  <div class="modal-footer">
-    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-    <button type="submit" class="btn btn-primary">Guardar</button>
+<div class="col">
+  <form method="POST" class="row">
+    {% csrf_token %}
+    {% for field in form %}
+    <div class="col-3 form-group">
+        {{ field.errors}}
+        {{ field.label_tag }}
+        {% render_field field class="form-control" %}
+    </div>
+    {% endfor %}
+  </form>
+  <div class="flex-row">
+    <a href="{% url 'home'%}" type="button" class="btn btn-outline-secondary btn-sm">Cancelar</a>
+    <button type="submit" class="btn btn-primary btn-sm">Guardar</button>
   </div>
-</form>
+</div>
 <!-- New patient form -->
 {% endblock%}
 <!-- /Modal Patient Creation -->

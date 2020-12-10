@@ -13,26 +13,38 @@ from patients.forms import Patient_Form
 def patient_profile(request,id_number):
     #Get the patient by its id_number
     patient = Patient.objects.get(id_number=id_number)
-    reports = Report.objects.filter(patient_id=id_number) 
+
+    #Get the patients list
+    patients = Patient.objects.filter(user=request.user,status='A')
+
+    reports = Report.objects.filter(patient_id=id_number)
+
     context = {
         'patient':patient,
         'reports':reports,
+        'patients':patients,
     }
     # Return the patient profile as a dictionary
     return render(request,'patient.html', context)
 
 @login_required(login_url='/login/')
 def patient_creation(request):
+
+    #Get the patients list
+    patients = Patient.objects.filter(user=request.user,status='A')
+
     if request.method == 'GET':
         form = Patient_Form()
         context = {
-            'form':form
+            'form':form,
+            'patients':patients,
         }
     else:
         # POST
         form = Patient_Form(request.POST)
         context = {
-            'form':form
+            'form':form,
+            'patients':patients,
         }
         if form.is_valid():
             form.save()
@@ -41,17 +53,23 @@ def patient_creation(request):
 
 @login_required(login_url='/login/')
 def patient_update(request,id_number):
+
+    #Get the patients list
+    patients = Patient.objects.filter(user=request.user,status='A')
+
     patient = Patient.objects.get(id_number=id_number)
     if request.method == 'GET':
         form = Patient_Form(instance=patient)
         context = {
-            'form':form
+            'form':form,
+            'patients':patients,
         }
     else:
         # POST update instance
         form = Patient_Form(request.POST, instance=patient)
         context = {
-            'form':form
+            'form':form,
+            'patients':patients,
         }
         if form.is_valid():
             form.save()

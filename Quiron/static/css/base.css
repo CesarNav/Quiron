@@ -1,8 +1,14 @@
+html,body {
+    height: 100%;
+}
+
 #loginbackground {
     background: linear-gradient(#041B74, #05ADC8);
-    max-height: 100%;
+    height: 100%;
     color: #ffffff;
+
 }
+
 .card {
     border: solid 2px #05ADC8;
     color: #041B74;
@@ -60,10 +66,8 @@
 }
 #footer {
     background-color: #05ADC8;
-    position: fixed;
     bottom: 0;
     width: 100%;
-    
 }
 
 #footer a {

@@ -14,16 +14,21 @@ from reportlab.pdfgen import canvas
 
 @login_required(login_url='/login/')
 def report_creation(request):
+    #Get the patients list
+    patients = Patient.objects.filter(user=request.user,status='A')
+    
     if request.method == 'GET':
         form = Report_Form()
         context = {
-            'form':form
+            'form':form,
+            'patients':patients
         }
     else:
         # POST
         form = Report_Form(request.POST)
         context = {
-            'form':form
+            'form':form,
+            'patients':patients
         }
         if form.is_valid():
             form.save()
@@ -32,17 +37,23 @@ def report_creation(request):
 
 @login_required(login_url='/login/')
 def report_update(request,id):
+    #Get the patients list
+    patients = Patient.objects.filter(user=request.user,status='A')
+
+    #Get the report list
     report = Report.objects.get(id = id)
     if request.method == 'GET':
         form = Report_Form(instance=report)
         context = {
-            'form':form
+            'form':form,
+            'patients':patients
         }
     else:
         # POST update instance
         form = Report_Form(request.POST, instance=report)
         context = {
-            'form':form
+            'form':form,
+            'patients':patients
         }
         if form.is_valid():
             form.save()
