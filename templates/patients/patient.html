@@ -1,0 +1,89 @@
+{% extends "./baseh.html"%}
+{% load static %}
+
+<!-- Title -->
+{% block headcontent %}
+<title>{{ patient.name }} {{ patient.last_name }} | {{ patient.id_number }} </title>
+{% endblock  %}
+<!-- /Title -->
+
+{% block patient_profile %}
+<div class="card w-100">
+    <div class="row">
+        <div class="col">
+            <div class="card-body" id="patient-card">
+              <h1 class="card-text"> {{ patient.name}} {{ patient.last_name}} </h1>
+              <span class="label">ID</span> <span class="card-text">{{ patient.id_type}} {{ patient.id_number}}</span> 
+              <span class="label">Edad</span> <span class="card-text">{{ patient.age}}</span>
+              <span class="label">Fecha de Nacimiento</span> <span class="card-text">{{ patient.date_birth}}</span>
+              <span class="label">Telefono</span> <span class="card-text">{{ patient.telephone}}</span>
+              <span class="label">Email</span> <span class="card-text">{{ patient.email}}</span>
+            </div>
+            <div class="card-body">
+              <a href="{% url 'patient_update' patient.id_number %}" class="btn btn-primary btn-sm">Editar</a>
+              <a href="{% url 'report_pdf' patient.id_number %}" class="btn btn-primary btn-sm">Imprimir reporte</a>
+              <a href="{% url 'patient_deactivate' patient.id_number %}" class="btn btn-outline-secondary btn-sm">Desactivar</a>
+              <button type="button" class="btn btn-outline-secondary btn-sm" data-toggle="modal" data-target="#exampleModal">
+                Eliminar
+              </button>
+            </div>
+            
+        </div>
+    </div>
+</div>
+<div class="row mt-2">
+    <div class="col-8">
+      <div class="card">
+        <div class="card-body">
+          <!-- Seccion title -->
+          <h5 class="card-title">Historia clinica</h5>
+          <!-- /Seccion title -->
+
+          <a href="{% url 'report_creation' %}"  class="btn btn-primary btn-sm">Crear nuevo reporte</a>
+          {% for report in reports %}
+          <div class="col mt-3 mb-2">
+            <div class="card">
+              <div class="card-body">
+                <span class="label">Fecha de la sesion </span> <span class="card-title">{{ report.created }}</span> 
+                <p class="label">Tecnicas usadas</p> <p class="card-text">{{ report.used_techniques }}</p> 
+                <p class="label">Conclusiones y resultados</p><p class="card-text">{{ report.conclusions }}</p>
+                <a href="{% url 'report_update' report.id %}" class="btn btn-primary btn-sm">Editar</a>
+                <a href="{% url 'report_delete' report.id %}" class="btn btn-outline-secondary btn-sm">Eliminar</a>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+          
+         
+        </div>
+      </div>
+    </div>
+
+    
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Eliminar Paciente</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <p>Está a punto de eliminar un paciente y la información asociada al mismo.</p>
+            <p>Una vez completada esta acción, no podra acceder a dicho perfil ni a su información asociada.</p>
+            <p>¿Desea continuar con este proceso?</p>
+            
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-outline-secondary btn-sm" data-dismiss="modal">Cancelar</button>
+            <a href="{% url 'patient_delete' patient.id_number %}" class="btn btn-primary btn-sm">Eliminar de manera definitiva</a>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+{% endblock%}
+
+
+

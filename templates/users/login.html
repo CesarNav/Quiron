@@ -1,0 +1,50 @@
+<!-- Extends template from base -->
+{% extends "base.html" %}
+
+<!-- Load statics files from static -->
+{% load static %}
+
+{% block headcontent %}
+<link rel="stylesheet" href="{% static 'css/base.css' %}">
+<title>Ingresar</title>
+{% endblock  %}
+
+{% block login %}
+<div class="d-flex flex-column">
+    <div class="p-2">
+        <form method="POST" action="{% url 'login' %}" id=loginform>
+            {% csrf_token %}  
+            <!-- Error message -->
+            <div class="row justify-content-center">
+                {% if errorlogin %}
+                    <p class="alert alert-danger">{{ errorlogin }}</p>
+                {% endif %}
+            </div>
+            <!-- /Error message -->
+        
+            <!-- Imputs Fields -->
+            <div class="form-group">
+                <label for="exampleInputUsername"> Nombre de Usuario</label>
+                <input type="text" class="form-control" id="exampleInputText" name="username">
+                <small id="usernameHelp" class="form-text text-muted">Ingresa el nombre de usuario con el que te registraste</small>
+            </div>
+            <div class="form-group">
+                <label for="exampleInputPassword1">Contraseña</label>
+                <input type="password" class="form-control" id="exampleInputPassword1" name="password">
+            </div>
+            <!-- /Imputs Fields -->
+            
+            <div class="d-flex justify-content-end ">
+                <button type="submit" class="btn btn-primary p-2">Ingresar</button>
+            </div>
+        </form>
+
+        
+    </div>
+
+    <div class="p-2" id=signinmessage d-flex justify-content-end >
+        <p>No tienes una cuenta?, registrate dando click <span><a href="/signin">aqui</a></span></p>
+    </div>
+</div>
+
+{% endblock %}
