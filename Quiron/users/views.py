@@ -76,7 +76,7 @@ def login_view(request):
         else:
             # Return a error message
             return render(request, 'login.html', {'errorlogin':'Usuario o contraseña invalida'})
-    return render(request,'login.html's)
+    return render(request,'login.html')
 
 """ Signin view """
 def signin_view(request):
